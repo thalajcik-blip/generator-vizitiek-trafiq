@@ -1,0 +1,12 @@
+{
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/v1", "destination": "/Generátor vizitky v1.dc.html" },
+    { "source": "/v2", "destination": "/Generátor vizitky v2.dc.html" },
+    { "source": "/v3", "destination": "/Generátor vizitky v3.dc.html" }
+  ],
+  "headers": [
+    { "source": "/(.*)\\.dc\\.html", "headers": [{ "key": "Content-Type", "value": "text/html; charset=utf-8" }] },
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
+  ]
+}

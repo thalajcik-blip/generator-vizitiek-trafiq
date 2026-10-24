@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #eef0f4; }
+  a { color: #e86028; text-decoration: none; }
+  a:hover { color: #3350a1; }
+  input::placeholder { color: #a3a6b8; }
+</style>
+</helmet>
+<div style="min-height:100vh;font-family:Manrope,sans-serif;color:#101438;display:flex;flex-direction:column">
+  <header style="background:#101438;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:20px">
+      <img src="assets/logo-dk.svg" alt="Trafiq" style="height:34px;width:auto;display:block">
+      <div style="width:1px;height:28px;background:#2b3160"></div>
+      <div style="font:700 15px Manrope,sans-serif;color:#f4f4f4">Generátor vizitky · verzia {{ version }}</div>
+    </div>
+    <nav style="display:flex;gap:6px">
+      <sc-for list="{{ versions }}" as="item" hint-placeholder-count="3">
+        <sc-if value="{{ item.current }}" hint-placeholder-val="{{ false }}"><span style="font:700 13px Manrope,sans-serif;color:#101438;background:#f4f4f4;padding:8px 14px;border-radius:6px">{{ item.label }}</span></sc-if>
+        <sc-if value="{{ item.other }}" hint-placeholder-val="{{ true }}"><a href="{{ item.href }}" style="font:700 13px Manrope,sans-serif;color:#c9cbd6;padding:8px 14px;border-radius:6px;border:1px solid #2b3160" style-hover="color:#f4f4f4;border-color:#e86028">{{ item.label }}</a></sc-if>
+      </sc-for>
+    </nav>
+  </header>
+
+  <main style="flex:1;display:flex;flex-wrap:wrap;gap:32px;padding:32px;align-items:flex-start">
+    <section style="flex:1 1 380px;max-width:520px;background:#ffffff;border-radius:10px;padding:28px;display:flex;flex-direction:column;gap:22px;box-shadow:0 1px 2px rgba(16,20,56,0.06)">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font:800 12px Manrope,sans-serif;letter-spacing:0.14em;color:#e86028">OSOBA</div>
+        <div style="display:grid;grid-template-columns:76px minmax(0,1fr) minmax(0,1fr) 76px;gap:10px">
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Titul pred<input value="{{ v.pre }}" onChange="{{ h.pre }}" placeholder="Ing." style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Meno<input value="{{ v.first }}" onChange="{{ h.first }}" placeholder="Ján" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Priezvisko<input value="{{ v.last }}" onChange="{{ h.last }}" placeholder="Novák" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Titul za<input value="{{ v.post }}" onChange="{{ h.post }}" placeholder="PhD." style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Pozícia<input value="{{ v.position }}" onChange="{{ h.position }}" placeholder="Obchodný riaditeľ" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font:800 12px Manrope,sans-serif;letter-spacing:0.14em;color:#e86028">FIRMA</div>
+        <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Názov firmy<input value="{{ v.company }}" onChange="{{ h.company }}" placeholder="Triton Security, s.r.o." style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Ulica a číslo<input value="{{ v.street }}" onChange="{{ h.street }}" placeholder="Priemyselná 1/2034," style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">PSČ a mesto<input value="{{ v.city }}" onChange="{{ h.city }}" placeholder="031 01 Liptovský Mikuláš" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="font:800 12px Manrope,sans-serif;letter-spacing:0.14em;color:#e86028">KONTAKT</div>
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px">
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Telefón<input value="{{ v.phone }}" onChange="{{ h.phone }}" placeholder="+421 901 123 567" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+          <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">E-mail<input value="{{ v.email }}" onChange="{{ h.email }}" placeholder="jan.novak@trafiq.sk" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:6px;font:600 12px Manrope,sans-serif;color:#6b6e83">Web<input value="{{ v.web }}" onChange="{{ h.web }}" placeholder="www.trafiq.sk" style="height:40px;box-sizing:border-box;width:100%;border:1px solid #d5d7e0;border-radius:6px;padding:0 10px;font:500 14px Manrope,sans-serif;color:#101438;background:#ffffff;outline:none" style-focus="border-color:#3350a1"></label>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;padding:14px 16px;background:#f4f5f8;border-radius:8px;font:500 12.5px/1.5 Manrope,sans-serif;color:#4a4e68">
+        <div style="font:700 12.5px Manrope,sans-serif;color:#101438">QR kód (vCard)</div>
+        <div style="text-wrap:pretty">Obsahuje meno, firmu, telefón, e-mail a web. Tituly, pozícia a adresa sa do QR nedávajú, aby bol kód jednoduchší a ľahko čitateľný.</div>
+        <div style="color:#6b6e83">{{ qrInfo }}</div>
+      </div>
+
+      <sc-if value="{{ hasWarn }}" hint-placeholder-val="{{ false }}"><div style="padding:12px 14px;border-radius:8px;background:#fdeee6;border:1px solid #f3b796;font:600 12.5px/1.5 Manrope,sans-serif;color:#8a2f0b;text-wrap:pretty">{{ warnText }}</div></sc-if>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button onClick="{{ download }}" style="height:46px;padding:0 22px;border:none;border-radius:6px;background:#e86028;color:#ffffff;font:800 14px Manrope,sans-serif;cursor:pointer" style-hover="background:#d0521e">Stiahnuť PDF pre tlač</button>
+        <button onClick="{{ reset }}" style="height:46px;padding:0 18px;border:1px solid #d5d7e0;border-radius:6px;background:#ffffff;color:#101438;font:700 14px Manrope,sans-serif;cursor:pointer" style-hover="border-color:#101438">Vzorové údaje</button>
+      </div>
+    </section>
+
+    <section style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:18px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="font:800 18px Manrope,sans-serif">Náhľad tlačového PDF</div>
+          <div style="font:500 12.5px Manrope,sans-serif;color:#6b6e83">{{ status }}</div>
+        </div>
+        <div style="display:flex;background:#ffffff;border:1px solid #d5d7e0;border-radius:7px;padding:3px;gap:3px">
+          <button onClick="{{ viewTrim }}" style="height:32px;padding:0 12px;border:none;border-radius:5px;font:700 12.5px Manrope,sans-serif;cursor:pointer;background:{{ trimBg }};color:{{ trimFg }}">Po orezaní</button>
+          <button onClick="{{ viewFull }}" style="height:32px;padding:0 12px;border:none;border-radius:5px;font:700 12.5px Manrope,sans-serif;cursor:pointer;background:{{ fullBg }};color:{{ fullFg }}">So spadávkou a značkami</button>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font:700 12px Manrope,sans-serif;letter-spacing:0.12em;color:#6b6e83">LÍCE</div>
+          <canvas ref="{{ setFront }}" style="width:100%;max-width:640px;height:auto;display:block;background:#ffffff;box-shadow:0 8px 24px rgba(16,20,56,0.14)"></canvas>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="font:700 12px Manrope,sans-serif;letter-spacing:0.12em;color:#6b6e83">RUB</div>
+          <canvas ref="{{ setBack }}" style="width:100%;max-width:640px;height:auto;display:block;background:#ffffff;box-shadow:0 8px 24px rgba(16,20,56,0.14)"></canvas>
+        </div>
+      </div>
+      <div style="font:500 12.5px/1.5 Manrope,sans-serif;color:#6b6e83;max-width:640px;text-wrap:pretty">PDF: 85 × 55 mm, spadávka 3 mm, orezové značky, CMYK. Líce je prevzaté zo šablóny bez zmeny. Text na rube je v písme Manrope a pri dlhom texte sa automaticky zmenší.</div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  VERSION = 1;
+  KEYS = ['pre', 'first', 'last', 'post', 'position', 'company', 'street', 'city', 'phone', 'email', 'web'];
+  state = { d: null, view: 'trim', status: 'Načítavam šablónu…', modules: 0, err: false };
+  h = Object.fromEntries(this.KEYS.map((k) => [k, (e) => this.update({ [k]: e.target.value })]));
+
+  async componentDidMount() {
+    try {
+      this.eng = await import(new URL('vizitka-engine.js', document.baseURI).href);
+      this.pdfjs = await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.min.mjs');
+      this.pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.4.168/build/pdf.worker.min.mjs';
+      let saved = null;
+      try { saved = JSON.parse(localStorage.getItem('trafiq-vizitka-v' + this.VERSION) || 'null'); } catch (e) {}
+      this.setState({ d: { ...this.eng.DEFAULTS, ...(saved || {}) } }, () => this.regen());
+    } catch (e) {
+      console.error(e);
+      this.setState({ status: 'Chyba pri načítaní: ' + e.message, err: true });
+    }
+  }
+  componentWillUnmount() { clearTimeout(this.t); }
+
+  update(patch) {
+    this.setState((s) => ({ d: { ...s.d, ...patch } }), () => {
+      try { localStorage.setItem('trafiq-vizitka-v' + this.VERSION, JSON.stringify(this.state.d)); } catch (e) {}
+      clearTimeout(this.t);
+      this.t = setTimeout(() => this.regen(), 280);
+    });
+  }
+
+  async regen() {
+    const run = (this.run = (this.run || 0) + 1);
+    this.setState({ status: 'Generujem…' });
+    try {
+      const { bytes, modules, warnings } = await this.eng.buildPdf(this.VERSION, this.state.d);
+      this.setState({ warnings });
+      if (run !== this.run) return;
+      this.bytes = bytes;
+      const doc = await this.pdfjs.getDocument({ data: bytes.slice() }).promise;
+      this.pages = [];
+      for (let i = 1; i <= 2; i++) {
+        const page = await doc.getPage(i);
+        const vp = page.getViewport({ scale: 4 });
+        const c = document.createElement('canvas');
+        c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+        await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+        this.pages.push(c);
+      }
+      if (run !== this.run) return;
+      this.paint();
+      this.setState({ status: 'Aktuálne · ' + this.eng.fileName(this.VERSION, this.state.d), modules, err: false });
+    } catch (e) {
+      console.error(e);
+      this.setState({ status: 'Chyba: ' + e.message, err: true });
+    }
+  }
+
+  paint() {
+    if (!this.pages) return;
+    const trim = this.state.view === 'trim';
+    [this.front, this.back].forEach((el, i) => {
+      const src = this.pages[i];
+      if (!el || !src) return;
+      const off = trim ? 21 * 4 : 0;
+      el.width = src.width - off * 2; el.height = src.height - off * 2;
+      el.getContext('2d').drawImage(src, off, off, el.width, el.height, 0, 0, el.width, el.height);
+    });
+  }
+
+  setFront = (el) => { this.front = el; if (el) this.paint(); };
+  setBack = (el) => { this.back = el; if (el) this.paint(); };
+  setView(view) { this.setState({ view }, () => this.paint()); }
+
+  download = () => {
+    if (!this.bytes) return;
+    const url = URL.createObjectURL(new Blob([this.bytes], { type: 'application/pdf' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = this.eng.fileName(this.VERSION, this.state.d);
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+  };
+
+  renderVals() {
+    const d = this.state.d || {};
+    const v = Object.fromEntries(this.KEYS.map((k) => [k, d[k] ?? '']));
+    const trim = this.state.view === 'trim';
+    const files = { 1: 'Gener%C3%A1tor%20vizitky%20v1.dc.html', 2: 'Gener%C3%A1tor%20vizitky%20v2.dc.html', 3: 'Gener%C3%A1tor%20vizitky%20v3.dc.html' };
+    return {
+      version: this.VERSION, v, h: this.h,
+      versions: [1, 2, 3].map((n) => ({ label: 'Verzia ' + n, href: files[n], current: n === this.VERSION, other: n !== this.VERSION })),
+      status: this.state.status,
+      hasWarn: !!(this.state.warnings && this.state.warnings.length),
+      warnText: 'Príliš dlhý text sa nezmestí na vizitku, skráťte ho: ' + (this.state.warnings || []).map((k) => ({ name: 'meno s titulmi', position: 'pozícia', company: 'názov firmy', street: 'ulica', city: 'PSČ a mesto', phone: 'telefón', email: 'e-mail', web: 'web' }[k])).join(', ') + '.',
+      qrInfo: this.state.modules ? `Aktuálne ${this.state.modules} × ${this.state.modules} modulov · korekcia chýb M` : '',
+      download: this.download,
+      reset: () => this.eng && this.update({ ...this.eng.DEFAULTS }),
+      viewTrim: () => this.setView('trim'), viewFull: () => this.setView('full'),
+      trimBg: trim ? '#101438' : 'transparent', trimFg: trim ? '#ffffff' : '#101438',
+      fullBg: trim ? 'transparent' : '#101438', fullFg: trim ? '#101438' : '#ffffff',
+      setFront: this.setFront, setBack: this.setBack,
+    };
+  }
+}
+</script>
+</body>
+</html>
