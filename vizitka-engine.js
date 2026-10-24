@@ -9,7 +9,7 @@ export const CONFIGS = {
     template: 'assets/vizitka-v1-sablona.pdf',
     qr: { x: 189.646, y: 35.024, size: 57.874 },
     text: [
-      { k: 'name', font: 'ExtraBold', size: 11, x: 43.328, y: 147.038, tc: 0.005, c: NAVY, maxW: 135 },
+      { k: 'name', font: 'ExtraBold', size: 11 * 0.85, x: 43.328, y: 147.038, tc: 0.005, c: NAVY, maxW: 135 },
       { k: 'position', font: 'Regular', size: 8, x: 43.328, y: 134.496, tc: 0.017, c: GRAY, maxW: 135 },
       { k: 'company', font: 'SemiBold', size: 8, x: 50.197, y: 101.409, tc: 0, c: NAVY, maxW: 128 },
       { k: 'street', font: 'Regular', size: 7, x: 50.197, y: 91.409, tc: 0.038, c: GRAY, maxW: 128 },
@@ -29,7 +29,7 @@ export const CONFIGS = {
     template: 'assets/vizitka-v2-sablona.pdf',
     qr: { x: 33.549, y: 109.911, size: 53.635 },
     text: [
-      { k: 'name', font: 'ExtraBold', size: 11, x: 32.622, y: 59.447, tc: 0.005, c: [0.028, 0.018, 0.018, 0], maxW: 106 },
+      { k: 'name', font: 'ExtraBold', size: 11 * 0.85, x: 32.622, y: 59.447, tc: 0.005, c: [0.028, 0.018, 0.018, 0], maxW: 106 },
       { k: 'position', font: 'Regular', size: 7.5, x: 32.622, y: 46.454, tc: 0, c: [0.28, 0.24, 0, 0], maxW: 106 },
       { k: 'company', font: 'Regular', size: 7.5, x: 32.622, y: 36.454, tc: -0.009, c: [0.28, 0.24, 0, 0], maxW: 106 },
       { k: 'street', font: 'Medium', size: 7.5, x: 158.764, y: 88.974, tc: 0.028, c: [0, 0, 0, 0], maxW: 91 },
@@ -49,7 +49,7 @@ export const CONFIGS = {
     template: 'assets/vizitka-v3-sablona.pdf',
     qr: { x: 190.512, y: 104.622, size: 57.874 },
     text: [
-      { k: 'name', font: 'ExtraBold', size: 12, x: 38.291, y: 146.255, tc: 0.001, c: NAVY, maxW: 140 },
+      { k: 'name', font: 'ExtraBold', size: 12 * 0.85, x: 38.291, y: 146.255, tc: 0.001, c: NAVY, maxW: 140 },
       { k: 'position', font: 'Medium', size: 7.5, x: 38.291, y: 133.761, tc: 0.035, c: [0.483, 0.383, 0.261, 0.007], maxW: 140, upper: true },
       { k: 'phone', font: 'Bold', size: 7.5, x: 37.441, y: 107.399, tc: 0, c: NAVY, maxW: 140 },
       { k: 'email', font: 'Bold', size: 7.5, x: 37.441, y: 96.769, tc: 0, c: NAVY, maxW: 140 },
